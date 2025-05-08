@@ -1,0 +1,30 @@
+{
+  "services": [
+    {
+      "name": "calibre-web-automated",
+      "image": "crocodilestick/calibre-web-automated:latest",
+      "isMain": true,
+      "internalPort": 8083,
+      "environment": {
+        "PUID": "1000",
+        "PGID": "1000",
+        "TZ": "${TZ}"
+      },
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/data/config",
+          "containerPath": "/config"
+        },
+        {
+          "hostPath": "${ROOT_FOLDER_HOST}/media/data/cwa-book-ingest",
+          "containerPath": "/cwa-book-ingest"
+        },
+        {
+          "hostPath": "${ROOT_FOLDER_HOST}/media/data/calibre-library",
+          "containerPath": "/calibre-library"
+        }
+      ]
+    }
+  ],
+  "$schema": "../dynamic-compose-schema.json"
+}
